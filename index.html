@@ -151,7 +151,7 @@
       cursor: pointer;
       padding: .2rem .35rem;
     }
-    #mis, #kuidas, #muud, #pildid, #kontakt {
+    details.acc, #kontakt {
       scroll-margin-top: 5.4rem;
     }
     @media (max-width: 820px) {
@@ -318,6 +318,12 @@
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: 1.22rem;
     }
+    .acc .galerii-kaart {
+      width: 100%;
+      margin-top: .9rem;
+    }
+    .acc .galerii-kaart img { height: 12rem; }
+    .acc .galerii-kaart span { display: none; }
     .vaade {
       position: fixed;
       top: 0; right: 0; bottom: 0; left: 0;
@@ -597,11 +603,7 @@
       </a>
       <button type="button" class="menu-nupp" id="menuNupp" aria-label="Menüü">☰</button>
       <nav class="toc" id="peamenüü">
-        <a href="#mis" data-i="nav_mis">Mis see on</a>
-        <a href="#kuidas" data-i="nav_kuidas">Kuidas tulla</a>
-        <a href="#muud" data-i="nav_muud">Teised võimalused</a>
-        <a href="#pildid" data-i="nav_pildid">Pildid</a>
-        <a href="#kontakt" data-i="nav_kontakt">Kontakt</a>
+        <!-- teenused joonistab JS -->
       </nav>
       <div class="hero-right">
         <div class="social">
@@ -632,46 +634,8 @@
   </header>
 
   <main class="wrap">
-    <details class="acc" id="mis">
-      <summary data-i="mis">Mis see on</summary>
-      <div class="acc-clip">
-      <div class="body">
-        <p data-i="mis_lyhi">Õhupallist saab koer, mõõk, lill või värav laua kohale. Figuur valmib kohapeal.</p>
-        <details class="inner">
-          <summary data-i="pikemalt">Pikemalt</summary>
-          <div class="body">
-            <p data-i="mis_pikk" style="white-space:pre-line"></p>
-            <p data-i="mis_pillid"></p>
-          </div>
-        </details>
-        <details class="inner">
-          <summary data-i="veel_pikemalt">Veel pikemalt</summary>
-          <div class="body">
-            <p data-i="mis_veel"></p>
-          </div>
-        </details>
-      </div>
-      </div>
-    </details>
+    <div id="teenused"></div>
 
-    <details class="acc" id="kuidas">
-      <summary data-i="kuidas">Huvitav teada</summary>
-      <div class="acc-clip">
-      <div class="body" id="huvitavSisu"></div>
-      </div>
-    </details>
-
-    <details class="acc" id="muud">
-      <summary data-i="muud">Teised võimalused</summary>
-      <div class="acc-clip">
-      <div class="body">
-        <p data-i="muud_tekst" style="white-space:pre-line"></p>
-      </div>
-      </div>
-    </details>
-
-    <h2 id="pildid" data-i="pildid">Pildid</h2>
-    <div class="galeriid" id="galeriid"></div>
 
     <h2 id="kontakt" data-i="kontakt">Kontakt</h2>
     <div class="contact">
@@ -732,27 +696,14 @@
       const ig = document.getElementById("link-ig");
       if (fb) fb.href = seaded.facebook || "#";
       if (ig) ig.href = seaded.instagram || "#";
-      const kast = document.getElementById("huvitavSisu");
-      if (kast) {
-        const p = sisu[lang] || sisu.et || {};
-        const read = ({et:"Ava artikkel",ru:"Открыть статью",tr:"Yazıyı aç",en:"Open article"})[lang] || "Open article";
-        let html = "";
-        for (let n = 1; n <= 3; n++) {
-          const txt = p["huvitav_" + n] || "";
-          const url = p["huvitav_" + n + "_url"] || "";
-          if (!txt) continue;
-          html += "<p>" + txt + "</p>";
-          if (url) html += "<p><a href='" + url + "' target='_blank' rel='noopener'>" + read + "</a></p>";
-        }
-        kast.innerHTML = html;
-      }
+
     }
     document.querySelectorAll(".langs button").forEach(b => {
       b.addEventListener("click", () => {
         lang = b.dataset.lang;
         localStorage.setItem("keel", lang);
         apply();
-        ehitaGaleriid(galeriidCache);
+        ehitaTeenused(galeriidCache);
         if (document.getElementById("raamat")?.classList.contains("sees") && window.avaRaamat) window.avaRaamat();
       });
     });
@@ -882,28 +833,116 @@
       const p = (g && g.pealkiri) || {};
       return p[lang] || p.et || g.id || "";
     }
-    function ehitaGaleriid(andmed) {
-      const kast = document.getElementById("galeriid");
-      if (!kast) return;
+    function galVali(obj) {
+      if (!obj || typeof obj !== "object") return "";
+      return obj[lang] || obj.et || "";
+    }
+    function seaNav() {
+      const nav = document.getElementById("peamenüü");
+      if (!nav) return;
+      const pack = T[lang] || T.et || {};
+      nav.innerHTML = "";
+      galeriidCache.forEach(g => {
+        const a = document.createElement("a");
+        a.href = "#" + g.id;
+        a.textContent = galNimi(g);
+        nav.appendChild(a);
+      });
+      const k = document.createElement("a");
+      k.href = "#kontakt";
+      k.textContent = pack.nav_kontakt || pack.kontakt || "Kontakt";
+      nav.appendChild(k);
+      nav.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", (e) => {
+          const id = (a.getAttribute("href") || "").replace("#", "");
+          if (!id) return;
+          e.preventDefault();
+          document.querySelector(".riba")?.classList.remove("lahti");
+          history.replaceState(null, "", "#" + id);
+          avaKoht(id);
+        });
+      });
+    }
+    function ehitaTeenused(andmed) {
+      const hoidla = document.getElementById("teenused");
+      if (!hoidla) return;
       let list = Array.isArray(andmed) ? andmed : [];
       if (list.length && typeof list[0] === "string") {
         list = [{ id: "pildid", pealkiri: { et: "Pildid" }, pildid: list }];
       }
       galeriidCache = list.map((g, i) => ({
-        id: g.id || ("galerii-" + (i + 1)),
+        id: g.id || ("teenus-" + (i + 1)),
         pealkiri: g.pealkiri || {},
+        jutt: g.jutt || {},
+        pikk: g.pikk || {},
         pildid: (g.pildid || []).map(n => (typeof n === "string") ? n : (n.fail || "")).filter(Boolean)
       }));
-      kast.innerHTML = galeriidCache.map((g, i) => {
-        const kaan = g.pildid[0] ? '<img src="pildid/' + g.pildid[0] + '" alt="">' : "";
-        return '<button class="galerii-kaart" type="button" data-gal="' + i + '">' +
-          kaan + '<span>' + galNimi(g) + '</span></button>';
-      }).join("");
-      kast.onclick = (e) => {
+      const pack = T[lang] || T.et || {};
+      hoidla.innerHTML = "";
+      galeriidCache.forEach((g, i) => {
+        const d = document.createElement("details");
+        d.className = "acc";
+        d.id = g.id;
+        const sum = document.createElement("summary");
+        sum.textContent = galNimi(g);
+        const clip = document.createElement("div");
+        clip.className = "acc-clip";
+        const body = document.createElement("div");
+        body.className = "body";
+        const jutt = galVali(g.jutt);
+        if (jutt) {
+          const p = document.createElement("p");
+          p.textContent = jutt;
+          body.appendChild(p);
+        }
+        const pikk = galVali(g.pikk);
+        if (pikk) {
+          const inn = document.createElement("details");
+          inn.className = "inner";
+          const isum = document.createElement("summary");
+          isum.textContent = pack.pikemalt || "Pikemalt";
+          const ib = document.createElement("div");
+          ib.className = "body";
+          ib.style.whiteSpace = "pre-line";
+          ib.textContent = pikk;
+          inn.appendChild(isum);
+          inn.appendChild(ib);
+          body.appendChild(inn);
+        }
+        if (g.pildid.length) {
+          const btn = document.createElement("button");
+          btn.className = "galerii-kaart";
+          btn.type = "button";
+          btn.dataset.gal = String(i);
+          const img = document.createElement("img");
+          img.src = "pildid/" + g.pildid[0];
+          img.alt = "";
+          btn.appendChild(img);
+          body.appendChild(btn);
+        }
+        clip.appendChild(body);
+        d.appendChild(sum);
+        d.appendChild(clip);
+        hoidla.appendChild(d);
+      });
+      hoidla.querySelectorAll("details.acc > summary").forEach(s => {
+        s.addEventListener("click", (e) => {
+          e.preventDefault();
+          const d = s.parentElement;
+          if (d.open || d.classList.contains("avatud")) {
+            d.classList.remove("avatud");
+            setTimeout(() => { d.open = false; }, 850);
+          } else {
+            avaKoht(d.id);
+          }
+        });
+      });
+      hoidla.onclick = (e) => {
         const nupp = e.target.closest("[data-gal]");
         if (!nupp) return;
         if (window.avaaGalerii) window.avaaGalerii(+nupp.dataset.gal, 0);
       };
+      seaNav();
       if (!window.avaaGalerii) galeriiVaade();
       if (!window.avaRaamat) raamatToo();
     }
@@ -1178,7 +1217,8 @@
       seaded = Object.assign(seaded, s);
       sisu = sisuFail;
       apply();
-      ehitaGaleriid(pildid);
+      ehitaTeenused(pildid);
+      if (location.hash) avaKoht(location.hash.replace("#", ""));
     }).catch((err) => {
       console.error(err);
     });
