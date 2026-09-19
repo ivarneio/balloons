@@ -1,1 +1,96 @@
-"teenused": ["loomad", "maaling", "glitter"]
+{
+  "pealkiri": {
+    "et": "Peopaketid",
+    "en": "Party packages",
+    "ru": "Праздничные пакеты",
+    "tr": "Parti paketleri"
+  },
+  "teenused": [
+    "loomad",
+    "maaling",
+    "glitter"
+  ],
+  "paketid": [
+    {
+      "id": "vaike",
+      "nimi": {
+        "et": "Väike pidu",
+        "en": "Small party",
+        "ru": "Маленький праздник",
+        "tr": "Küçük parti"
+      },
+      "kirjeldus": {
+        "et": "Üks teenus, väike seltskond. Sobib kodusele sünnipäevale.",
+        "en": "One service, a small group. Fits a home birthday.",
+        "ru": "Одна услуга, небольшая компания. Для домашнего дня рождения.",
+        "tr": "Tek hizmet, küçük grup. Ev doğum gününe uyar."
+      },
+      "hind": {
+        "et": "Hind kokkuleppel",
+        "en": "Price by agreement",
+        "ru": "Цена по договорённости",
+        "tr": "Fiyat anlaşmayla"
+      },
+      "sisu": {
+        "et": "Kuni 10 last. Umbes üks tund.",
+        "en": "Up to 10 children. About one hour.",
+        "ru": "До 10 детей. Около часа.",
+        "tr": "En fazla 10 çocuk. Yaklaşık bir saat."
+      }
+    },
+    {
+      "id": "keskmine",
+      "nimi": {
+        "et": "Keskmine pidu",
+        "en": "Medium party",
+        "ru": "Средний праздник",
+        "tr": "Orta parti"
+      },
+      "kirjeldus": {
+        "et": "Kaks teenust koos. Järjekord liigub, lapsed ei jää ootama.",
+        "en": "Two services together. The line keeps moving.",
+        "ru": "Две услуги вместе. Очередь не стоит.",
+        "tr": "İki hizmet birlikte. Sıra akıcı kalır."
+      },
+      "hind": {
+        "et": "Hind kokkuleppel",
+        "en": "Price by agreement",
+        "ru": "Цена по договорённости",
+        "tr": "Fiyat anlaşmayla"
+      },
+      "sisu": {
+        "et": "Kuni 20 last. Umbes kaks tundi.",
+        "en": "Up to 20 children. About two hours.",
+        "ru": "До 20 детей. Около двух часов.",
+        "tr": "En fazla 20 çocuk. Yaklaşık iki saat."
+      }
+    },
+    {
+      "id": "suur",
+      "nimi": {
+        "et": "Suur pidu",
+        "en": "Large party",
+        "ru": "Большой праздник",
+        "tr": "Büyük parti"
+      },
+      "kirjeldus": {
+        "et": "Kolm teenust. Lasteaed, seltsimaja, suurem sünnipäev.",
+        "en": "Three services. Kindergarten, village hall, a larger birthday.",
+        "ru": "Три услуги. Садик, народный дом, большой день рождения.",
+        "tr": "Üç hizmet. Anaokulu, salon, büyük doğum günü."
+      },
+      "hind": {
+        "et": "Hind kokkuleppel",
+        "en": "Price by agreement",
+        "ru": "Цена по договорённости",
+        "tr": "Fiyat anlaşmayla"
+      },
+      "sisu": {
+        "et": "Kuni 35 last. Kestus kokkuleppel.",
+        "en": "Up to 35 children. Duration by agreement.",
+        "ru": "До 35 детей. Длительность по договорённости.",
+        "tr": "En fazla 35 çocuk. Süre anlaşmayla."
+      }
+    }
+  ]
+}
