@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kahe Vahel — helirännak</title>
+  <title>Õhupallid</title>
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch.png">
-  <meta name="description" content="Madalsageduslik helirännak. Heli, mida kuuled kehaga. Parmupill, didgeridoo, kristallkausid. Kehra.">
+  <meta name="description" content="Õhupallifiguurid, kaared ja peod. Pallist saab loom, lill või terve värav.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kahe Vahel — helirännak">
-  <meta property="og:description" content="Heli, mida kuuled kehaga. Parmupill, didgeridoo, kristallkausid.">
-  <meta property="og:url" content="https://ivarneio.github.io/helivann/">
-  <meta property="og:image" content="https://ivarneio.github.io/helivann/og.jpg">
+  <meta property="og:title" content="Õhupallid">
+  <meta property="og:description" content="Pallist saab loom, lill või terve värav.">
+  <meta property="og:url" content="https://ivarneio.github.io/balloons/">
+  <meta property="og:image" content="https://ivarneio.github.io/balloons/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -151,7 +151,7 @@
       cursor: pointer;
       padding: .2rem .35rem;
     }
-    #tulekul, #mis, #kuidas, #muud, #pildid, #kontakt {
+    #mis, #kuidas, #muud, #pildid, #kontakt {
       scroll-margin-top: 5.4rem;
     }
     @media (max-width: 820px) {
@@ -175,7 +175,7 @@
         border-bottom: 1px solid rgba(246,238,226,.15);
         padding: .55rem 0;
       }
-      #tulekul, #mis, #kuidas, #muud, #pildid, #kontakt {
+      #mis, #kuidas, #muud, #pildid, #kontakt {
         scroll-margin-top: 5.4rem;
       }
     }
@@ -286,17 +286,37 @@
       padding: .55rem 0;
       cursor: pointer;
     }
-    .gallery {
-      display: block;
-      max-width: 28rem;
+    .galeriid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
     }
-    .gallery img {
-      width: 100%;
-      height: 14rem;
-      object-fit: cover;
-      border-radius: 8px;
-      display: block;
+    @media (max-width: 820px) {
+      .galeriid { grid-template-columns: 1fr; }
+    }
+    .galerii-kaart {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 0;
       cursor: pointer;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+    .galerii-kaart img {
+      width: 100%;
+      height: 10.5rem;
+      object-fit: cover;
+      display: block;
+      background: var(--line);
+    }
+    .galerii-kaart span {
+      display: block;
+      padding: .7rem .85rem .8rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.22rem;
     }
     .vaade {
       position: fixed;
@@ -572,12 +592,11 @@
 <body>
   <div class="riba">
     <div class="hero-top">
-      <a class="logo" href="./" id="logo" aria-label="Helivann avaleht">
-        <img src="parmu.jpg" alt="Helivann">
+      <a class="logo" href="./" id="logo" aria-label="Õhupallid avaleht">
+        <img src="parmu.jpg" alt="Õhupallid">
       </a>
       <button type="button" class="menu-nupp" id="menuNupp" aria-label="Menüü">☰</button>
       <nav class="toc" id="peamenüü">
-        <a href="#tulekul" data-i="nav_tulekul">Tulekul</a>
         <a href="#mis" data-i="nav_mis">Mis see on</a>
         <a href="#kuidas" data-i="nav_kuidas">Kuidas tulla</a>
         <a href="#muud" data-i="nav_muud">Teised võimalused</a>
@@ -604,34 +623,20 @@
   </div>
   <header class="hero">
     <div class="hero-inner">
-      <p class="eyebrow" data-i="eyebrow">Kehra · parmupill · didgeridoo · kausid</p>
+      <p class="eyebrow" data-i="eyebrow">figuurid · kaared · sünnipäevad · üritused</p>
       <div class="hero-nimi">
-        <h1>Kahe Vahel</h1>
-        <p class="lead" data-i="lead">Heli, mida kuuled kehaga.</p>
+        <h1>Õhupallid</h1>
+        <p class="lead" data-i="lead">Pallist saab loom, lill või terve värav.</p>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <details class="acc" id="tulekul">
-      <summary>
-        <div class="sum-peamine">
-          <span class="sum-silt" data-i="jargmine">Järgmine rännak</span>
-          <span id="jargmine">Laen listi…</span>
-        </div>
-      </summary>
-      <div class="acc-clip">
-        <div class="body">
-          <ul class="list" id="list"></ul>
-        </div>
-      </div>
-    </details>
-
     <details class="acc" id="mis">
       <summary data-i="mis">Mis see on</summary>
       <div class="acc-clip">
       <div class="body">
-        <p data-i="mis_lyhi">Helirännak parmupilli, didgeridoo ja madalate kristallkausidega. Enne heli on lühike kehaäratus ja paar suunavat lauset. Rääkida ei ole vaja.</p>
+        <p data-i="mis_lyhi">Õhupallist saab koer, mõõk, lill või värav laua kohale. Figuur valmib kohapeal.</p>
         <details class="inner">
           <summary data-i="pikemalt">Pikemalt</summary>
           <div class="body">
@@ -666,12 +671,11 @@
     </details>
 
     <h2 id="pildid" data-i="pildid">Pildid</h2>
-    <div class="gallery" id="galerii"></div>
-    <p class="empty" data-i="pildid_mark" style="margin-top:.7rem"></p>
+    <div class="galeriid" id="galeriid"></div>
 
     <h2 id="kontakt" data-i="kontakt">Kontakt</h2>
     <div class="contact">
-      <p data-i="kontakt_kes">Ivar Neio, Kehra</p>
+      <p data-i="kontakt_kes">Õhupallid</p>
       <p data-i="telefon">Telefon: lisa number</p>
       <p data-i="kontakt_kord"></p>
     </div>
@@ -697,19 +701,15 @@
     </div>
   </div>
 
-  <footer data-i="jalus">Helivann · Kehra</footer>
+  <footer data-i="jalus">Õhupallid — figuurid, kaared, peod</footer>
 
   <script>
     let T = {};
     let lang = localStorage.getItem("keel") || "et";
-    let rowsCache = [];
+    let galeriidCache = [];
     let seaded = { telefon: "", facebook: "", instagram: "" };
     let sisu = { et: {}, en: {} };
 
-    function formaat(d) {
-      const [y, m, day] = d.split("-");
-      return day + "." + m + "." + y;
-    }
     function apply() {
       const pack = Object.assign({}, T[lang] || T.et, sisu[lang] || sisu.et || {});
       document.documentElement.lang = lang;
@@ -746,36 +746,13 @@
         }
         kast.innerHTML = html;
       }
-      renderList();
     }
-    function renderList() {
-      const pack = (T[lang] || T.et);
-      const nextBox = document.getElementById("jargmine");
-      const list = document.getElementById("list");
-      const soon = rowsCache.slice().sort((a, b) => a.kuupaev.localeCompare(b.kuupaev));
-      if (!soon.length) {
-        nextBox.innerHTML = "<span class='empty'>" + pack.tyhi + "</span>";
-        list.innerHTML = "";
-        return;
-      }
-      const n = soon[0];
-      nextBox.innerHTML =
-        "<div class='when'>" + formaat(n.kuupaev) + " · " + n.kellaaeg + "</div>" +
-        "<div class='where'>" + n.koht + (n.tais ? " · " + pack.tais : "") + "</div>";
-      list.innerHTML = soon.slice(1, 4).map(e =>
-        "<li><strong>" + formaat(e.kuupaev) + " · " + e.kellaaeg + "</strong><br>" +
-        e.koht +
-        (e.markus ? "<br><span>" + e.markus + "</span>" : "") +
-        (e.tais ? " <span class='tais'>" + pack.tais + "</span>" : "") +
-        "</li>"
-      ).join("");
-    }
-
     document.querySelectorAll(".langs button").forEach(b => {
       b.addEventListener("click", () => {
         lang = b.dataset.lang;
         localStorage.setItem("keel", lang);
         apply();
+        ehitaGaleriid(galeriidCache);
         if (document.getElementById("raamat")?.classList.contains("sees") && window.avaRaamat) window.avaRaamat();
       });
     });
@@ -855,7 +832,6 @@
           }
           if (id === "kontakt") keriJalusNaha();
           else keriPaiste(el);
-          if (id === "pildid" && window.avaaGalerii) window.avaaGalerii(0);
         });
       });
     }
@@ -902,54 +878,75 @@
       avaKoht(location.hash.replace("#", ""));
     }
 
-    function ehitaGalerii(nimed) {
-      const kast = document.getElementById("galerii");
+    function galNimi(g) {
+      const p = (g && g.pealkiri) || {};
+      return p[lang] || p.et || g.id || "";
+    }
+    function ehitaGaleriid(andmed) {
+      const kast = document.getElementById("galeriid");
       if (!kast) return;
-      const failid = (nimed || []).map(n => (typeof n === "string") ? n : (n.fail || "")).filter(Boolean);
-      window._galFailid = failid;
-      kast.innerHTML = failid.length ? '<img src="pildid/' + failid[0] + '" alt="">' : "";
-      galeriiVaade(failid);
-      raamatToo();
+      let list = Array.isArray(andmed) ? andmed : [];
+      if (list.length && typeof list[0] === "string") {
+        list = [{ id: "pildid", pealkiri: { et: "Pildid" }, pildid: list }];
+      }
+      galeriidCache = list.map((g, i) => ({
+        id: g.id || ("galerii-" + (i + 1)),
+        pealkiri: g.pealkiri || {},
+        pildid: (g.pildid || []).map(n => (typeof n === "string") ? n : (n.fail || "")).filter(Boolean)
+      }));
+      kast.innerHTML = galeriidCache.map((g, i) => {
+        const kaan = g.pildid[0] ? '<img src="pildid/' + g.pildid[0] + '" alt="">' : "";
+        return '<button class="galerii-kaart" type="button" data-gal="' + i + '">' +
+          kaan + '<span>' + galNimi(g) + '</span></button>';
+      }).join("");
+      kast.onclick = (e) => {
+        const nupp = e.target.closest("[data-gal]");
+        if (!nupp) return;
+        if (window.avaaGalerii) window.avaaGalerii(+nupp.dataset.gal, 0);
+      };
+      if (!window.avaaGalerii) galeriiVaade();
+      if (!window.avaRaamat) raamatToo();
     }
 
-    function galeriiVaade(failid) {
+    function galeriiVaade() {
       const kast = document.getElementById("vaade");
       const suur = document.getElementById("vaadePilt");
       const riba = document.getElementById("vaadeRiba");
       if (!kast || !suur || !riba) return;
-      riba.innerHTML = "";
-      const kaaned = (failid && failid.length ? failid : (window._galFailid || [])).map(f => ({ src: "pildid/" + f }));
-      const uks = document.querySelector(".gallery img");
-      if (uks) uks.onclick = () => naitaStart(0);
-      if (!kaaned.length) return;
-      function naitaStart(n) { if (window.avaaGalerii) window.avaaGalerii(n); }
       let i = 0;
+      let aktiivne = 0;
       let taimer = null;
+      function kaaned() {
+        const g = galeriidCache[aktiivne] || { pildid: [] };
+        return (g.pildid || []).map(f => ({ src: "pildid/" + f }));
+      }
 
       function seiska() {
         if (taimer) { clearInterval(taimer); taimer = null; }
       }
+      function joonistaRiba(pildid) {
+        riba.innerHTML = "";
+        pildid.forEach((img, n) => {
+          const th = document.createElement("img");
+          th.src = img.src;
+          th.alt = "";
+          th.addEventListener("click", () => naita(n));
+          riba.appendChild(th);
+        });
+      }
       function kaivita() {
         seiska();
-        if (kaaned.length < 2) return;
+        if (kaaned().length < 2) return;
         taimer = setInterval(() => naita(i + 1, false), 2200);
       }
 
-      kaaned.forEach((img, n) => {
-        const th = document.createElement("img");
-        th.src = img.src;
-        th.alt = "";
-        th.addEventListener("click", () => naita(n));
-        riba.appendChild(th);
-      });
-      const uksPilt = document.querySelector(".gallery img");
-      if (uksPilt) uksPilt.onclick = () => naita(0);
-
       function naita(n, restart) {
-        i = (n + kaaned.length) % kaaned.length;
+        const pildid = kaaned();
+        if (!pildid.length) return;
+        i = (n + pildid.length) % pildid.length;
         suur.classList.remove("nahtav");
         setTimeout(() => {
-          suur.src = kaaned[i].src;
+          suur.src = pildid[i].src;
           suur.classList.add("nahtav");
         }, 200);
         riba.querySelectorAll("img").forEach((th, k) => th.classList.toggle("aktiivne", k === i));
@@ -972,7 +969,11 @@
         if (e.key === "ArrowLeft") naita(i - 1);
       });
 
-      window.avaaGalerii = function (n) { naita(n == null ? 0 : n); };
+      window.avaaGalerii = function (gal, n) {
+        aktiivne = gal == null ? 0 : gal;
+        joonistaRiba(kaaned());
+        naita(n == null ? 0 : n);
+      };
     }
 
 
@@ -1169,19 +1170,17 @@
 
     Promise.all([
       fetch("tekstid.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("sundmused.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
       fetch("seaded.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({})),
       fetch("sisu.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ et: {}, en: {} })),
       fetch("pildid.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
-    ]).then(([tekstid, rows, s, sisuFail, pildid]) => {
+    ]).then(([tekstid, s, sisuFail, pildid]) => {
       T = tekstid;
-      rowsCache = rows;
       seaded = Object.assign(seaded, s);
       sisu = sisuFail;
       apply();
-      ehitaGalerii(pildid);
-    }).catch(() => {
-      document.getElementById("jargmine").textContent = "Listi ei saanud laadida.";
+      ehitaGaleriid(pildid);
+    }).catch((err) => {
+      console.error(err);
     });
   </script>
 </body>
