@@ -1,0 +1,42 @@
+[
+  {
+    "id": "figuurid",
+    "pealkiri": {
+      "et": "Figuurid",
+      "en": "Figures",
+      "ru": "Фигурки",
+      "tr": "Figürler"
+    },
+    "pildid": ["figuurid.jpg", "loomad.jpg"]
+  },
+  {
+    "id": "kaared",
+    "pealkiri": {
+      "et": "Kaared",
+      "en": "Arches",
+      "ru": "Арки",
+      "tr": "Taklar"
+    },
+    "pildid": ["kaar.jpg"]
+  },
+  {
+    "id": "peod",
+    "pealkiri": {
+      "et": "Peod",
+      "en": "Parties",
+      "ru": "Праздники",
+      "tr": "Partiler"
+    },
+    "pildid": ["taevas.jpg"]
+  },
+  {
+    "id": "kingitused",
+    "pealkiri": {
+      "et": "Kingitused",
+      "en": "Gifts",
+      "ru": "Подарки",
+      "tr": "Hediyeler"
+    },
+    "pildid": ["loomad.jpg"]
+  }
+]
