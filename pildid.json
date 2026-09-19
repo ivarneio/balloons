@@ -7,7 +7,22 @@
       "ru": "Фигурки",
       "tr": "Figürler"
     },
-    "pildid": ["figuurid.jpg", "loomad.jpg"]
+    "jutt": {
+      "et": "Pikast pallist saab koer, mõõk, lill või see tegelane, keda laps just küsis. Figuur valmib kohapeal. Laps näeb, kuidas tühi pall muutub asjaks, mida koju kaasa saab.",
+      "en": "A long balloon becomes a dog, a sword, a flower, or the character the child just asked for. Twisted on the spot.",
+      "ru": "Из длинного шара получается собака, меч, цветок или тот герой, которого попросил ребёнок. Фигурка крутится на месте.",
+      "tr": "Uzun balondan köpek, kılıç, çiçek veya çocuğun istediği karakter çıkar. Figür yerinde bükülür."
+    },
+    "pikk": {
+      "et": "Keeran figuure järjekorras. Iga laps ütleb, mida tahab — kui kuju on võimalik, saab ta selle kätte.\n\nSobib sünnipäevale, lasteaia lõpetamisele ja seltsimaja päevale.",
+      "en": "Figures are made in a line. Each child says what they want — if the shape is possible, they get it.",
+      "ru": "Фигурки делаю по очереди. Каждый ребёнок говорит, что хочет — если форма возможна, он её получает.",
+      "tr": "Figürler sırayla yapılır. Her çocuk ne istediğini söyler — şekil mümkünse eline geçer."
+    },
+    "pildid": [
+      "figuurid.jpg",
+      "loomad.jpg"
+    ]
   },
   {
     "id": "kaared",
@@ -17,7 +32,21 @@
       "ru": "Арки",
       "tr": "Taklar"
     },
-    "pildid": ["kaar.jpg"]
+    "jutt": {
+      "et": "Kaar või sambad pannakse paika enne külalisi. Need püsivad õhtu lõpuni, kui ruum ei ole palav ja terav.",
+      "en": "An arch or columns go up before the guests. They last the evening if the room is not hot and sharp.",
+      "ru": "Арку или колонны ставим до гостей. Они держатся весь вечер, если в комнате не жарко.",
+      "tr": "Tak veya sütunlar konuklardan önce kurulur. Oda sıcak değilse akşama kadar durur."
+    },
+    "pikk": {
+      "et": "Kaar püsib paremini jahedas ruumis, eemal küünlast ja koogilõikamise noast. Õues on tuul suurem vastane kui vihm.",
+      "en": "An arch lasts better in a cool room, away from candles and the cake knife.",
+      "ru": "Арка лучше стоит в прохладной комнате, вдали от свечей и ножа для торта.",
+      "tr": "Tak serin odada, mumdan ve pasta bıçağından uzakta daha iyi durur."
+    },
+    "pildid": [
+      "kaar.jpg"
+    ]
   },
   {
     "id": "peod",
@@ -27,7 +56,21 @@
       "ru": "Праздники",
       "tr": "Partiler"
     },
-    "pildid": ["taevas.jpg"]
+    "jutt": {
+      "et": "Ütle kuupäev, koht, laste arv ja kas soovid figuure, kaart või mõlemat. Tulen kohale kokkulepitud ajaks. Sul ei ole vaja palle ega pumpa.",
+      "en": "Say the date, the place, how many children, and whether you want figures, an arch, or both.",
+      "ru": "Скажи дату, место, число детей и что нужно: фигурки, арка или оба.",
+      "tr": "Tarihi, yeri, çocuk sayısını ve figür mü tak mı ikisi mi istediğini söyle."
+    },
+    "pikk": {
+      "et": "Figuurid: umbes kaks kuni kolm tundi, olenevalt lastest. Kaar: paigaldus enne pidu, võtan maha pärast, kui nii lepime.",
+      "en": "Figures: about two to three hours. Arch: set up before the party.",
+      "ru": "Фигурки: примерно два-три часа. Арка: ставим до праздника.",
+      "tr": "Figürler: iki-üç saat. Tak: partiden önce kurulur."
+    },
+    "pildid": [
+      "taevas.jpg"
+    ]
   },
   {
     "id": "kingitused",
@@ -37,6 +80,20 @@
       "ru": "Подарки",
       "tr": "Hediyeler"
     },
-    "pildid": ["loomad.jpg"]
+    "jutt": {
+      "et": "Ettel tellides: suured figuurid, kimbud, personaalsed kingid. Hind kokkuleppel.",
+      "en": "On order: large figures, bouquets, personal gifts. Price by agreement.",
+      "ru": "Под заказ: большие фигурки, букеты, именные подарки. Цена по договорённости.",
+      "tr": "Siparişle: büyük figürler, buketler, kişisel hediyeler."
+    },
+    "pikk": {
+      "et": "Üritusel valmivad kohapealsed figuurid. Valmis kinke peost koju ei müüda, kui see pole enne kokku lepitud.",
+      "en": "At the event only on-the-spot figures are made. Ready gifts are not sold unless agreed beforehand.",
+      "ru": "На празднике делаются фигурки на месте. Готовые подарки домой не продаются, если это не оговорено заранее.",
+      "tr": "Etkinlikte yerinde figürler yapılır."
+    },
+    "pildid": [
+      "loomad.jpg"
+    ]
   }
 ]
