@@ -557,6 +557,20 @@
       accent-color: var(--dark);
       cursor: pointer;
     }
+
+    .pakk {
+      padding: .75rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .pakk:first-child { border-top: 0; padding-top: 0; }
+    .pakk h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin: 0 0 .25rem;
+    }
+    .pakk p { margin: .2rem 0; }
+    .pakk .hind { color: var(--accent); }
     .empty { color: var(--muted); }
 
     .raamat {
@@ -836,6 +850,7 @@
     let T = {};
     let lang = localStorage.getItem("keel") || "et";
     let galeriidCache = [];
+    let paketidCache = { teenused: [], paketid: [], pealkiri: {} };
     let seaded = { telefon: "", facebook: "", instagram: "" };
     let sisu = { et: {}, en: {} };
 
@@ -995,6 +1010,50 @@
       avaKoht(location.hash.replace("#", ""));
     }
 
+
+    function panePaketid(body, teenusId, pack) {
+      const lubatud = paketidCache.teenused || [];
+      const list = paketidCache.paketid || [];
+      if (!list.length) return;
+      if (lubatud.length && !lubatud.includes(teenusId)) return;
+      const inn = document.createElement("details");
+      inn.className = "inner";
+      const isum = document.createElement("summary");
+      isum.textContent = galVali(paketidCache.pealkiri) || pack.peopaketid || "Peopaketid";
+      const ib = document.createElement("div");
+      ib.className = "body";
+      list.forEach(pk => {
+        const art = document.createElement("article");
+        art.className = "pakk";
+        const h = document.createElement("h3");
+        h.textContent = galVali(pk.nimi);
+        art.appendChild(h);
+        const kirj = galVali(pk.kirjeldus);
+        if (kirj) {
+          const p = document.createElement("p");
+          p.textContent = kirj;
+          art.appendChild(p);
+        }
+        const sisu = galVali(pk.sisu);
+        if (sisu) {
+          const p = document.createElement("p");
+          p.style.whiteSpace = "pre-line";
+          p.textContent = sisu;
+          art.appendChild(p);
+        }
+        const hind = galVali(pk.hind);
+        if (hind) {
+          const p = document.createElement("p");
+          p.className = "hind";
+          p.textContent = hind;
+          art.appendChild(p);
+        }
+        ib.appendChild(art);
+      });
+      inn.appendChild(isum);
+      inn.appendChild(ib);
+      body.appendChild(inn);
+    }
     function galNimi(g) {
       const p = (g && g.pealkiri) || {};
       return p[lang] || p.et || g.id || "";
@@ -1086,6 +1145,7 @@
           btn.appendChild(img);
           body.appendChild(btn);
         }
+        panePaketid(body, g.id, pack);
         clip.appendChild(body);
         d.appendChild(sum);
         d.appendChild(clip);
@@ -1377,11 +1437,13 @@
       fetch("tekstid.json", { cache: "no-store" }).then(r => r.json()),
       fetch("seaded.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({})),
       fetch("sisu.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ et: {}, en: {} })),
-      fetch("pildid.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
-    ]).then(([tekstid, s, sisuFail, pildid]) => {
+      fetch("pildid.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
+      fetch("paketid.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({ teenused: [], paketid: [] }))
+    ]).then(([tekstid, s, sisuFail, pildid, pak]) => {
       T = tekstid;
       seaded = Object.assign(seaded, s);
       sisu = sisuFail;
+      paketidCache = pak || { teenused: [], paketid: [], pealkiri: {} };
       apply();
       ehitaTeenused(pildid);
       broneeriToo();
