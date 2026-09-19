@@ -1,7 +1,7 @@
 {
   "et": {
-    "eyebrow": "figuurid · kaared · sünnipäevad · üritused",
-    "lead": "Pallist saab loom, lill või terve värav.",
+    "eyebrow": "õhupalliloomad · näomaalingud · glitter · kingitused",
+    "lead": "Peole loom, näokuju, säde või kink.",
     "nav_mis": "Õhupallid",
     "nav_kuidas": "Kuidas käib",
     "nav_pildid": "Pildid",
@@ -17,14 +17,14 @@
     "kontakt_kes": "Õhupallid",
     "telefon": "Telefon",
     "kontakt_kord": "Koht ja kellaaeg kinnitatakse sõnumiga.",
-    "jalus": "Õhupallid — figuurid, kaared, peod",
+    "jalus": "Õhupalliloomad, näomaalingud, glittertätoveeringud, kingitused",
     "raamat_tagasi": "Tagasi",
     "raamat_edasi": "Edasi",
     "nav_muud": "Teised võimalused"
   },
   "en": {
-    "eyebrow": "figures · arches · birthdays · events",
-    "lead": "A balloon becomes an animal, a flower, or a whole gate.",
+    "eyebrow": "balloon animals · face painting · glitter · gifts",
+    "lead": "An animal, a face, a sparkle or a gift for the party.",
     "nav_mis": "Balloons",
     "nav_kuidas": "How it works",
     "nav_pildid": "Photos",
@@ -40,14 +40,14 @@
     "kontakt_kes": "Balloons",
     "telefon": "Phone",
     "kontakt_kord": "Place and time are confirmed by a message.",
-    "jalus": "Balloons — figures, arches, parties",
+    "jalus": "Balloon animals, face painting, glitter tattoos, gifts",
     "raamat_tagasi": "Back",
     "raamat_edasi": "Next",
     "nav_muud": "Other options"
   },
   "ru": {
-    "eyebrow": "фигурки · арки · дни рождения · праздники",
-    "lead": "Из шара получается зверь, цветок или целые ворота.",
+    "eyebrow": "фигурки · аквагрим · блёстки · подарки",
+    "lead": "На праздник — фигурка, рисунок, блёстки или подарок.",
     "nav_mis": "Шары",
     "nav_kuidas": "Как это проходит",
     "nav_pildid": "Фото",
@@ -63,14 +63,14 @@
     "kontakt_kes": "Шары",
     "telefon": "Телефон",
     "kontakt_kord": "Место и время подтверждаем сообщением.",
-    "jalus": "Шары — фигурки, арки, праздники",
+    "jalus": "Фигурки из шаров, аквагрим, блёстки-тату, подарки",
     "raamat_tagasi": "Назад",
     "raamat_edasi": "Дальше",
     "nav_muud": "Другие возможности"
   },
   "tr": {
-    "eyebrow": "figürler · taklar · doğum günleri · etkinlikler",
-    "lead": "Balondan hayvan, çiçek veya bütün bir kapı çıkar.",
+    "eyebrow": "balon hayvanları · yüz boyama · sim · hediyeler",
+    "lead": "Partiye hayvan, yüz, ışıltı veya hediye.",
     "nav_mis": "Balonlar",
     "nav_kuidas": "Nasıl olur",
     "nav_pildid": "Fotoğraflar",
@@ -86,7 +86,7 @@
     "kontakt_kes": "Balonlar",
     "telefon": "Telefon",
     "kontakt_kord": "Yer ve saat mesajla onaylanır.",
-    "jalus": "Balonlar — figürler, taklar, partiler",
+    "jalus": "Balon hayvanları, yüz boyama, sim dövmeler, hediyeler",
     "raamat_tagasi": "Geri",
     "raamat_edasi": "İleri",
     "nav_muud": "Diğer seçenekler"
