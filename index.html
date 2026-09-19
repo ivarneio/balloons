@@ -7,10 +7,10 @@
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch.png">
-  <meta name="description" content="Õhupallifiguurid, kaared ja peod. Pallist saab loom, lill või terve värav.">
+  <meta name="description" content="Õhupallifiguurid, kaared ja peod. Peole loom, näokuju, säde või kink.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Õhupallid">
-  <meta property="og:description" content="Pallist saab loom, lill või terve värav.">
+  <meta property="og:description" content="Peole loom, näokuju, säde või kink.">
   <meta property="og:url" content="https://ivarneio.github.io/balloons/">
   <meta property="og:image" content="https://ivarneio.github.io/balloons/og.jpg">
   <meta property="og:image:width" content="1200">
@@ -421,12 +421,139 @@
       100% { transform: translateX(0); }
     }
     .contact p { margin: .35rem 0; color: var(--muted); }
-    footer {
+    footer.jalus {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 25;
       background: var(--dark);
-      color: #e8d8c6;
-      padding: 1.6rem 1.2rem 2rem;
+      color: #f6eee2;
+      padding: 0;
       text-align: center;
-      font-size: .88rem;
+    }
+    footer.jalus button {
+      width: 100%;
+      background: none;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+      padding: .95rem 1.2rem calc(.95rem + env(safe-area-inset-bottom, 0px));
+      cursor: pointer;
+    }
+    footer.jalus button:hover { color: #e2c39a; }
+    body { padding-bottom: 4.2rem; }
+    .broneeri {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(18,14,12,.88);
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+    }
+    .broneeri.sees { display: flex; }
+    .broneeri-sulge {
+      position: absolute;
+      top: .7rem;
+      right: .9rem;
+      background: none;
+      border: 0;
+      color: #f6eee2;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .broneeri form {
+      background: var(--paper);
+      color: var(--ink);
+      width: min(28rem, 100%);
+      max-height: min(36rem, calc(100vh - 2.4rem));
+      overflow: auto;
+      border-radius: 14px;
+      padding: 1.25rem 1.15rem 1.35rem;
+      border: 1px solid var(--line);
+    }
+    .broneeri h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+    .broneeri label {
+      display: block;
+      font-size: .82rem;
+      color: var(--muted);
+      margin: .55rem 0 .85rem;
+    }
+    .broneeri input {
+      display: block;
+      width: 100%;
+      margin-top: .28rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 1rem;
+      padding: .55rem .65rem;
+      border-radius: 8px;
+    }
+    .broneeri input:focus {
+      outline: 2px solid #e2c39a;
+      outline-offset: 1px;
+    }
+    .broneeri button[type="submit"] {
+      width: 100%;
+      margin-top: .4rem;
+      border: 0;
+      border-radius: 10px;
+      background: var(--dark);
+      color: #f6eee2;
+      font: inherit;
+      font-size: 1.02rem;
+      padding: .75rem 1rem;
+      cursor: pointer;
+    }
+    .broneeri button[type="submit"]:disabled {
+      opacity: .35;
+      cursor: default;
+    }
+    .broneeri-olek {
+      margin: .7rem 0 0;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .broneeri-varav {
+      background: var(--paper);
+      color: var(--ink);
+      width: min(22rem, 100%);
+      border-radius: 14px;
+      padding: 1.25rem 1.15rem 1.35rem;
+      border: 1px solid var(--line);
+    }
+    .broneeri-varav.peidus,
+    .broneeri form.peidus { display: none; }
+    .broneeri-varav h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+      margin: 0 0 .85rem;
+    }
+    .broneeri-linnuke {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .broneeri-linnuke input {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+      accent-color: var(--dark);
+      cursor: pointer;
     }
     .empty { color: var(--muted); }
 
@@ -625,10 +752,10 @@
   </div>
   <header class="hero">
     <div class="hero-inner">
-      <p class="eyebrow" data-i="eyebrow">figuurid · kaared · sünnipäevad · üritused</p>
+      <p class="eyebrow" data-i="eyebrow">õhupalliloomad · näomaalingud · glitter · kingitused</p>
       <div class="hero-nimi">
         <h1>Õhupallid</h1>
-        <p class="lead" data-i="lead">Pallist saab loom, lill või terve värav.</p>
+        <p class="lead" data-i="lead">Peole loom, näokuju, säde või kink.</p>
       </div>
     </div>
   </header>
@@ -665,7 +792,43 @@
     </div>
   </div>
 
-  <footer data-i="jalus">Õhupallid — figuurid, kaared, peod</footer>
+    <footer class="jalus">
+    <button type="button" id="broneeriNupp" data-i="broneeri">Broneeri juba kohe</button>
+  </footer>
+
+  <div class="broneeri" id="broneeri">
+    <button type="button" class="broneeri-sulge" id="broneeriSulge" aria-label="Sulge">×</button>
+    <div class="broneeri-varav" id="broneeriVarav">
+      <h2 data-i="broneeri_varav">Enne broneeringut</h2>
+      <label class="broneeri-linnuke">
+        <input type="checkbox" id="br_inimene">
+        <span data-i="broneeri_inimene">Olen inimene</span>
+      </label>
+    </div>
+    <form id="broneeriVorm" class="peidus" novalidate>
+      <h2 data-i="broneeri_pealkiri">Broneering</h2>
+      <label><span data-i="broneeri_nimi">Nimi</span>
+        <input name="nimi" id="br_nimi" autocomplete="name" required>
+      </label>
+      <label><span data-i="broneeri_kuupaev">Soovitud kuupäev</span>
+        <input name="kuupaev" id="br_kuupaev" required>
+      </label>
+      <label><span data-i="broneeri_koht">Koht</span>
+        <input name="koht" id="br_koht" required>
+      </label>
+      <label><span data-i="broneeri_kella">Kellaaeg</span>
+        <input name="kellaaeg" id="br_kella" required>
+      </label>
+      <label><span data-i="broneeri_tel">Telefon</span>
+        <input name="telefon" id="br_tel" type="tel" autocomplete="tel" required>
+      </label>
+      <label><span data-i="broneeri_epost">E-post</span>
+        <input name="epost" id="br_epost" type="email" autocomplete="email" required>
+      </label>
+      <button type="submit" id="broneeriSaada" data-i="broneeri_saada" disabled>Saada</button>
+      <p class="broneeri-olek" id="broneeriOlek" hidden></p>
+    </form>
+  </div>
 
   <script>
     let T = {};
@@ -704,6 +867,7 @@
         localStorage.setItem("keel", lang);
         apply();
         ehitaTeenused(galeriidCache);
+        if (window.seaBroneeriVihjed) window.seaBroneeriVihjed();
         if (document.getElementById("raamat")?.classList.contains("sees") && window.avaRaamat) window.avaRaamat();
       });
     });
@@ -1218,10 +1382,125 @@
       sisu = sisuFail;
       apply();
       ehitaTeenused(pildid);
+      broneeriToo();
       if (location.hash) avaKoht(location.hash.replace("#", ""));
     }).catch((err) => {
       console.error(err);
     });
+
+    function broneeriToo() {
+      const kate = document.getElementById("broneeri");
+      const nupp = document.getElementById("broneeriNupp");
+      const sulge = document.getElementById("broneeriSulge");
+      const vorm = document.getElementById("broneeriVorm");
+      const saada = document.getElementById("broneeriSaada");
+      const olek = document.getElementById("broneeriOlek");
+      if (!kate || !nupp || !vorm || !saada) return;
+      if (window._broneeriValmis) return;
+      window._broneeriValmis = true;
+
+      const valjad = ["br_nimi", "br_kuupaev", "br_koht", "br_kella", "br_tel", "br_epost"];
+      function pack() { return Object.assign({}, T[lang] || T.et, sisu[lang] || sisu.et || {}); }
+      function seaVihjed() {
+        const p = pack();
+        const map = {
+          br_kuupaev: p.broneeri_kuupaev_vihje,
+          br_koht: p.broneeri_koht_vihje,
+          br_kella: p.broneeri_kella_vihje,
+          br_tel: p.broneeri_tel_vihje,
+          br_epost: p.broneeri_epost_vihje
+        };
+        Object.entries(map).forEach(([id, txt]) => {
+          const el = document.getElementById(id);
+          if (el && txt) el.placeholder = txt;
+        });
+      }
+      function tais() {
+        const nimi = (document.getElementById("br_nimi").value || "").trim();
+        const kuu = (document.getElementById("br_kuupaev").value || "").trim();
+        const koht = (document.getElementById("br_koht").value || "").trim();
+        const kell = (document.getElementById("br_kella").value || "").trim();
+        const tel = (document.getElementById("br_tel").value || "").trim();
+        const post = (document.getElementById("br_epost").value || "").trim();
+        const ok = nimi && kuu && koht && kell && tel.length >= 6 && post.includes("@") && post.includes(".");
+        saada.disabled = !ok;
+        return ok;
+      }
+      const varav = document.getElementById("broneeriVarav");
+      const inimene = document.getElementById("br_inimene");
+      function naitaVarav() {
+        if (varav) varav.classList.remove("peidus");
+        vorm.classList.add("peidus");
+        if (inimene) inimene.checked = false;
+      }
+      function naitaVorm() {
+        if (varav) varav.classList.add("peidus");
+        vorm.classList.remove("peidus");
+        seaVihjed();
+        tais();
+        document.getElementById("br_nimi").focus();
+      }
+      function ava() {
+        seaVihjed();
+        olek.hidden = true;
+        naitaVarav();
+        kate.classList.add("sees");
+        document.body.style.overflow = "hidden";
+      }
+      function paneKinni() {
+        kate.classList.remove("sees");
+        document.body.style.overflow = "";
+        naitaVarav();
+      }
+      if (inimene) {
+        inimene.addEventListener("change", () => {
+          if (inimene.checked) naitaVorm();
+        });
+      }
+      nupp.addEventListener("click", ava);
+      sulge.addEventListener("click", paneKinni);
+      kate.addEventListener("click", (e) => { if (e.target === kate) paneKinni(); });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && kate.classList.contains("sees")) paneKinni();
+      });
+      valjad.forEach(id => {
+        document.getElementById(id).addEventListener("input", tais);
+      });
+      vorm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!tais()) return;
+        const p = pack();
+        const read = {
+          nimi: document.getElementById("br_nimi").value.trim(),
+          kuupaev: document.getElementById("br_kuupaev").value.trim(),
+          koht: document.getElementById("br_koht").value.trim(),
+          kellaaeg: document.getElementById("br_kella").value.trim(),
+          telefon: document.getElementById("br_tel").value.trim(),
+          epost: document.getElementById("br_epost").value.trim()
+        };
+        const keha = [
+          p.broneeri_nimi + ": " + read.nimi,
+          p.broneeri_kuupaev + ": " + read.kuupaev,
+          p.broneeri_koht + ": " + read.koht,
+          p.broneeri_kella + ": " + read.kellaaeg,
+          p.broneeri_tel + ": " + read.telefon,
+          p.broneeri_epost + ": " + read.epost
+        ].join("\n");
+        const kuhu = (seaded.email || "").trim();
+        if (kuhu) {
+          const url = "mailto:" + encodeURIComponent(kuhu) +
+            "?subject=" + encodeURIComponent(p.broneeri_teema || "Broneering") +
+            "&body=" + encodeURIComponent(keha);
+          window.location.href = url;
+        }
+        olek.hidden = false;
+        olek.textContent = p.broneeri_valmis || "";
+        vorm.reset();
+        tais();
+      });
+      window.seaBroneeriVihjed = seaVihjed;
+      seaVihjed();
+    }
   </script>
 </body>
 </html>
