@@ -226,6 +226,17 @@
       box-shadow: 0 6px 20px rgba(42, 16, 36, .06);
     }
     details.acc:not(.avatud) { opacity: .88; }
+    #teenused:has(details.acc.avatud) details.acc:not(.avatud) {
+      margin: .28rem 0;
+    }
+    #teenused:has(details.acc.avatud) details.acc:not(.avatud) summary {
+      padding: .42rem .9rem;
+      font-size: 1.02rem;
+    }
+    #teenused:has(details.acc.avatud) details.acc:not(.avatud) summary::after {
+      width: .42rem;
+      height: .42rem;
+    }
     details.acc {
       background: var(--paper);
       border: 1px solid var(--line);
