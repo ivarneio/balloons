@@ -184,7 +184,7 @@
     .wrap {
       width: min(40rem, calc(100% - 2.4rem));
       margin: 0 auto;
-      padding: 2.4rem 0 70vh;
+      padding: 2.4rem 0 8rem;
       font-size: 1rem;
     }
     h2 {
@@ -220,7 +220,7 @@
 
     #teenused.flipib details.acc .acc-clip { transition: none; }
     details.acc.avatud {
-      border-color: #e8a8c8;
+      border-color: #e59abc;
       border-width: 1.5px;
       background: #fff;
       box-shadow: 0 6px 20px rgba(42, 16, 36, .06);
@@ -441,19 +441,38 @@
       padding: 0;
       text-align: center;
     }
+    .jalus-rida {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: .2rem .9rem;
+      padding: .55rem 1rem calc(.55rem + env(safe-area-inset-bottom, 0px));
+    }
+    footer.jalus a,
     footer.jalus button {
-      width: 100%;
       background: none;
       border: 0;
       color: inherit;
       font: inherit;
-      font-size: 1.05rem;
+      font-size: .95rem;
       letter-spacing: .04em;
-      padding: .95rem 1.2rem calc(.95rem + env(safe-area-inset-bottom, 0px));
+      text-decoration: none;
+      padding: .35rem .2rem;
       cursor: pointer;
     }
+    footer.jalus a:hover,
     footer.jalus button:hover { color: #f472d0; }
-    body { padding-bottom: 4.2rem; }
+    footer.jalus a[hidden] { display: none; }
+    @media (max-width: 820px) {
+      .jalus-rida {
+        flex-direction: column;
+        gap: .1rem;
+        padding: .45rem .8rem calc(.45rem + env(safe-area-inset-bottom, 0px));
+      }
+      footer.jalus button { font-size: 1.02rem; padding: .45rem .2rem; }
+    }
+    body { padding-bottom: 7.5rem; }
     .broneeri {
       display: none;
       position: fixed;
@@ -498,6 +517,7 @@
       color: var(--muted);
       margin: .55rem 0 .85rem;
     }
+    .broneeri select,
     .broneeri input {
       display: block;
       width: 100%;
@@ -818,7 +838,11 @@
   </div>
 
     <footer class="jalus">
-    <button type="button" id="broneeriNupp" data-i="broneeri">Broneeri juba kohe</button>
+    <div class="jalus-rida">
+      <a class="jalus-link" id="jalusTel" hidden></a>
+      <a class="jalus-link" id="jalusPost" hidden></a>
+      <button type="button" id="broneeriNupp" data-i="broneeri">Broneeri juba kohe</button>
+    </div>
   </footer>
 
   <div class="broneeri" id="broneeri">
@@ -832,23 +856,26 @@
     </div>
     <form id="broneeriVorm" class="peidus" novalidate>
       <h2 data-i="broneeri_pealkiri">Broneering</h2>
-      <label><span data-i="broneeri_nimi">Nimi</span>
-        <input name="nimi" id="br_nimi" autocomplete="name" required>
+      <label><span data-i="broneeri_toode">Toode</span>
+        <select name="toode" id="br_toode" required></select>
       </label>
-      <label><span data-i="broneeri_kuupaev">Soovitud kuupäev</span>
-        <input name="kuupaev" id="br_kuupaev" required>
+      <label><span data-i="broneeri_lapsed">Laste arv</span>
+        <input name="lapsed" id="br_lapsed" inputmode="numeric" required>
       </label>
       <label><span data-i="broneeri_koht">Koht</span>
         <input name="koht" id="br_koht" required>
       </label>
+      <label><span data-i="broneeri_kuupaev">Soovitud kuupäev</span>
+        <input name="kuupaev" id="br_kuupaev" required>
+      </label>
       <label><span data-i="broneeri_kella">Kellaaeg</span>
         <input name="kellaaeg" id="br_kella" required>
       </label>
-      <label><span data-i="broneeri_tel">Telefon</span>
-        <input name="telefon" id="br_tel" type="tel" autocomplete="tel" required>
-      </label>
       <label><span data-i="broneeri_epost">E-post</span>
         <input name="epost" id="br_epost" type="email" autocomplete="email" required>
+      </label>
+      <label><span data-i="broneeri_tel">Telefon</span>
+        <input name="telefon" id="br_tel" type="tel" autocomplete="tel" required>
       </label>
       <button type="submit" id="broneeriSaada" data-i="broneeri_saada" disabled>Saada</button>
       <p class="broneeri-olek" id="broneeriOlek" hidden></p>
@@ -860,7 +887,7 @@
     let lang = localStorage.getItem("keel") || "et";
     let galeriidCache = [];
     let paketidCache = { teenused: [], paketid: [], pealkiri: {} };
-    let seaded = { telefon: "", facebook: "", instagram: "" };
+    let seaded = { telefon: "", email: "", facebook: "", instagram: "" };
     let sisu = { et: {}, en: {} };
 
     function apply() {
@@ -885,7 +912,34 @@
       const ig = document.getElementById("link-ig");
       if (fb) fb.href = seaded.facebook || "#";
       if (ig) ig.href = seaded.instagram || "#";
+      seaJalus();
 
+    }
+    function seaJalus() {
+      const tel = (seaded.telefon || "").trim();
+      const post = (seaded.email || "").trim();
+      const aTel = document.getElementById("jalusTel");
+      const aPost = document.getElementById("jalusPost");
+      if (aTel) {
+        if (tel) {
+          aTel.hidden = false;
+          aTel.href = "tel:" + tel.replace(/\s/g, "");
+          aTel.textContent = tel;
+        } else {
+          aTel.hidden = true;
+          aTel.removeAttribute("href");
+        }
+      }
+      if (aPost) {
+        if (post) {
+          aPost.hidden = false;
+          aPost.href = "mailto:" + post;
+          aPost.textContent = post;
+        } else {
+          aPost.hidden = true;
+          aPost.removeAttribute("href");
+        }
+      }
     }
     document.querySelectorAll(".langs button").forEach(b => {
       b.addEventListener("click", () => {
@@ -1535,11 +1589,12 @@
       if (window._broneeriValmis) return;
       window._broneeriValmis = true;
 
-      const valjad = ["br_nimi", "br_kuupaev", "br_koht", "br_kella", "br_tel", "br_epost"];
+      const valjad = ["br_toode", "br_lapsed", "br_koht", "br_kuupaev", "br_kella", "br_epost", "br_tel"];
       function pack() { return Object.assign({}, T[lang] || T.et, sisu[lang] || sisu.et || {}); }
       function seaVihjed() {
         const p = pack();
         const map = {
+          br_lapsed: p.broneeri_lapsed_vihje,
           br_kuupaev: p.broneeri_kuupaev_vihje,
           br_koht: p.broneeri_koht_vihje,
           br_kella: p.broneeri_kella_vihje,
@@ -1552,13 +1607,15 @@
         });
       }
       function tais() {
-        const nimi = (document.getElementById("br_nimi").value || "").trim();
+        const toode = (document.getElementById("br_toode").value || "").trim();
+        const lapsed = (document.getElementById("br_lapsed").value || "").trim();
         const kuu = (document.getElementById("br_kuupaev").value || "").trim();
         const koht = (document.getElementById("br_koht").value || "").trim();
         const kell = (document.getElementById("br_kella").value || "").trim();
         const tel = (document.getElementById("br_tel").value || "").trim();
         const post = (document.getElementById("br_epost").value || "").trim();
-        const ok = nimi && kuu && koht && kell && tel.length >= 6 && post.includes("@") && post.includes(".");
+        const n = parseInt(lapsed, 10);
+        const ok = toode && n >= 1 && kuu && koht && kell && tel.length >= 6 && post.includes("@") && post.includes(".");
         saada.disabled = !ok;
         return ok;
       }
@@ -1569,12 +1626,31 @@
         vorm.classList.add("peidus");
         if (inimene) inimene.checked = false;
       }
+      function seaTooted() {
+        const sel = document.getElementById("br_toode");
+        if (!sel) return;
+        const praegu = sel.value;
+        const p = pack();
+        sel.innerHTML = "";
+        const tyhi = document.createElement("option");
+        tyhi.value = "";
+        tyhi.textContent = p.broneeri_toode_vihje || "";
+        sel.appendChild(tyhi);
+        galeriidCache.forEach(g => {
+          const o = document.createElement("option");
+          o.value = g.id;
+          o.textContent = galNimi(g);
+          sel.appendChild(o);
+        });
+        if ([...sel.options].some(o => o.value === praegu)) sel.value = praegu;
+      }
       function naitaVorm() {
         if (varav) varav.classList.add("peidus");
         vorm.classList.remove("peidus");
         seaVihjed();
+        seaTooted();
         tais();
-        document.getElementById("br_nimi").focus();
+        document.getElementById("br_toode").focus();
       }
       function ava() {
         seaVihjed();
@@ -1606,8 +1682,11 @@
         e.preventDefault();
         if (!tais()) return;
         const p = pack();
+        const toodeEl = document.getElementById("br_toode");
+        const toodeNimi = toodeEl.options[toodeEl.selectedIndex] ? toodeEl.options[toodeEl.selectedIndex].text : "";
         const read = {
-          nimi: document.getElementById("br_nimi").value.trim(),
+          toode: toodeNimi,
+          lapsed: document.getElementById("br_lapsed").value.trim(),
           kuupaev: document.getElementById("br_kuupaev").value.trim(),
           koht: document.getElementById("br_koht").value.trim(),
           kellaaeg: document.getElementById("br_kella").value.trim(),
@@ -1615,12 +1694,13 @@
           epost: document.getElementById("br_epost").value.trim()
         };
         const keha = [
-          p.broneeri_nimi + ": " + read.nimi,
-          p.broneeri_kuupaev + ": " + read.kuupaev,
+          p.broneeri_toode + ": " + read.toode,
+          p.broneeri_lapsed + ": " + read.lapsed,
           p.broneeri_koht + ": " + read.koht,
+          p.broneeri_kuupaev + ": " + read.kuupaev,
           p.broneeri_kella + ": " + read.kellaaeg,
-          p.broneeri_tel + ": " + read.telefon,
-          p.broneeri_epost + ": " + read.epost
+          p.broneeri_epost + ": " + read.epost,
+          p.broneeri_tel + ": " + read.telefon
         ].join("\n");
         const kuhu = (seaded.email || "").trim();
         if (kuhu) {
